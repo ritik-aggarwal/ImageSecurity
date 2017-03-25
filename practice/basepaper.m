@@ -56,3 +56,13 @@ x = reshape(x,M,N);
 y = reshape(y,M,N);
 z = reshape(z,M,N);
 
+
+%% Step-2:
+e1 = 0;e2 = 0;e3 = 0;
+for i = 1:M
+    for j = 1:N
+        e1 = e1 + (R(i,j)/divisor);
+        e2 = e2 + (G(i,j)/divisor);
+        e3 = e3 + (B(i,j)/divisor);
+    end
+end
