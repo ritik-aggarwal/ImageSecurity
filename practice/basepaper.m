@@ -70,3 +70,15 @@ end
 a = floor(mod((e1 + e2 + e3)*power(10,12),256));
 b = floor(mod((e1 + e2 + e3)*power(10,12)/2,256));
 c = floor(mod((e1 + e2 + e3)*power(10,12)/3,256));
+
+%% Step-3:
+m1=ones(M,N,1);
+m2=ones(M,N,1);
+m3=ones(M,N,1);
+for i = 1:M
+   for j = 1:N
+    m1(i,j,1) = mod(x(i,j,1)*power(10,15),256);
+    m2(i,j,1) = mod(y(i,j,1)*power(10,15),256);
+    m3(i,j,1) = mod(z(i,j,1)*power(10,15),256);
+   end
+end
