@@ -82,3 +82,34 @@ for i = 1:M
     m3(i,j,1) = mod(z(i,j,1)*power(10,15),256);
    end
 end
+
+
+S = ones(M,N,3);
+for i = 1:M
+    for j = 1:N
+        if(a ~= m1(i,j))
+           S(i,j,1) = abs(a-m1(i,j));
+        else
+            S(i,j,1) = a;
+        end
+    end
+end
+for i = 1:M
+    for j = 1:N
+        if(b ~= m2(i,j))
+           S(i,j,2) = abs(b-m2(i,j));
+        else
+           S(i,j,2) = b;
+        end
+    end
+end
+for i = 1:M
+    for j = 1:N
+        if(c ~= m3(i,j))
+           S(i,j,3) = abs(c-m3(i,j));
+        else
+           S(i,j,3) = m3(i,j);
+        end
+    end
+end
+
