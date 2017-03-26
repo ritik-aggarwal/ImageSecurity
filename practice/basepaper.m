@@ -66,3 +66,7 @@ for i = 1:M
         e3 = e3 + (B(i,j)/divisor);
     end
 end
+
+a = floor(mod((e1 + e2 + e3)*power(10,12),256));
+b = floor(mod((e1 + e2 + e3)*power(10,12)/2,256));
+c = floor(mod((e1 + e2 + e3)*power(10,12)/3,256));
