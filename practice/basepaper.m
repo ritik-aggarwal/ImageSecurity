@@ -148,3 +148,14 @@ for k = 1:3
         C(i,1,k) = mod((E(i,1,k) + C(i-1,1,k)),256);
     end
 end
+C = reshape(C,M,N,3);
+C = mat2gray(C);
+
+figure, imshow(D), title('Original input RGB image')
+figure, imshow(C), title('Final Encrypted RGB image')
+%figure, imshow(C(:,:,1)), title('Red channel')
+%figure, imshow(C(:,:,2)), title('Green channel')
+%figure, imshow(C(:,:,3)), title('Blue channel')
+%subplot(3,1,1), imhist(C(:,:,1)), title('Histogram of Red component(Encrypted image)')
+%subplot(3,1,2), imhist(C(:,:,2)), title('Histogram of Green component(Encrypted image)')
+%subplot(3,1,3), imhist(C(:,:,3)), title('Histogram of Blue component(Encrypted image)')
