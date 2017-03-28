@@ -135,3 +135,16 @@ end
 S = uint8(S);
 %figure, imshow(S), title('Encrypted S')
 E = bitxor(S,D);
+
+%% Step-5:
+
+E = double(E);
+E = reshape(E,maxlength,1,3);
+C = ones(maxlength,1,3);
+temp1 = E(19991,1,1);
+for k = 1:3
+    C(1,1,k) = E(1,1,k);
+    for i = 2:maxlength
+        C(i,1,k) = mod((E(i,1,k) + C(i-1,1,k)),256);
+    end
+end
