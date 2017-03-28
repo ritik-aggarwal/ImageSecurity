@@ -131,3 +131,7 @@ for i = 1:M
     S(i,j,3) = circshift(S(i,j,3),t3);
     end
 end
+
+S = uint8(S);
+%figure, imshow(S), title('Encrypted S')
+E = bitxor(S,D);
