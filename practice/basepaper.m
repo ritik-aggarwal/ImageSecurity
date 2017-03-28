@@ -125,4 +125,9 @@ for i = 1:M
         t1 = floor(mod(z(i,j,1)* power(10,15),maxlength));
         t2 = floor(mod((1-z(i,j,1))* power(10,15),maxlength));
         t3 = floor((t1 + t2 +c)/2);
-    
+    end
+    S(i,j,1) = circshift(S(i,j,1),t1);
+    S(i,j,2) = circshift(S(i,j,2),t2);
+    S(i,j,3) = circshift(S(i,j,3),t3);
+    end
+end
