@@ -113,3 +113,16 @@ for i = 1:M
     end
 end
 
+
+%% Step-4:
+for i = 1:M
+    for j = 1:N
+    if (((i-1)*N)+j) ~= M*N
+       t1 = floor(mod(x(i,j,1)*power(10,15),maxlength));
+       t2 = floor(mod(y(i,j,1)*power(10,15),maxlength));
+       t3 = floor(mod((x(i,j,1)+y(i,j,1)-(floor(x(i,j,1)+y(i,j,1))))*power(10,15),maxlength));
+    else
+        t1 = floor(mod(z(i,j,1)* power(10,15),maxlength));
+        t2 = floor(mod((1-z(i,j,1))* power(10,15),maxlength));
+        t3 = floor((t1 + t2 +c)/2);
+    
