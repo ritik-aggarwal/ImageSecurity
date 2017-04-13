@@ -159,5 +159,56 @@ figure, imshow(C), title('Final Encrypted RGB image')
 %subplot(3,1,1), imhist(C(:,:,1)), title('Histogram of Red component(Encrypted image)')
 %subplot(3,1,2), imhist(C(:,:,2)), title('Histogram of Green component(Encrypted image)')
 %subplot(3,1,3), imhist(C(:,:,3)), title('Histogram of Blue component(Encrypted image)')
-hello ritik
-jsvfjbaugvbejvev
+
+%% 3. Decryption
+maxlength = M*N;
+divisor = M*N*255;
+C(:,:,1) = reshape(C(:,:,1),[],M);
+C(:,:,2) = reshape(C(:,:,2),[],M);
+C(:,:,3) = reshape(C(:,:,3),[],M);
+C = reshape(C,M*N,1,3);
+E1 = ones(M*N,1,3);
+C = double(C);
+for k = 1:3
+    E1(1,1,k) = C(1,1,k);
+    for i = 2:maxlength
+        E1(i,1,k) = mod(C(i,1,k),256) - C(i-1,1,k);
+    end
+end
+C = reshape(C,M,N,3);
+%temp2 = E(19991,1,1);
+E = reshape(E,M,N,3);
+%figure, imshow(mat2gray(E)), title('Encrypted E')
+u1 = 3.399; u2 = 3.4499; k1 = 0.21; u = 3.85; k2 = 0.15;
+%Range:
+%2.75<u1<= 3.45; 2.75<u2<=3.45, 0.15<k1<=0.21, 3.56<u<=4, 0.13<k2<=0.15;
+% At decrypting end, logistic map equation are known.
+x = ones(maxlength,1);
+y = ones(maxlength,1);
+z = ones(maxlength,1);
+
+x(1,1)=0.345;
+y(1,1)=0.365;
+z(1,1)=0.537;
+
+for i = 2:maxlength
+  x(i,1) = u1*x(i-1,1)*(1-x(i-1,1))+ k1*(power(y(i-1,1),2));
+  y(i,1) = u2*y(i-1,1)*(1-y(i-1,1))+ k2*((power(x(i-1,1),2))+x(i-1,1)*y(i-1,1));
+  z(i,1) = u*z(i-1,1)*(1-z(i-1,1));
+end
+x = reshape(x,M,N);
+y = reshape(y,M,N);
+z = reshape(z,M,N);
+
+m1=ones(M,N,1);
+m2=ones(M,N,1);
+m3=ones(M,N,1);
+for i = 1:M
+   for j = 1:N
+    m1(i,j,1) = mod(x(i,j,1)*power(10,15),256);
+    m2(i,j,1) = mod(y(i,j,1)*power(10,15),256);
+    m3(i,j,1) = mod(z(i,j,1)*power(10,15),256);
+   end
+end
+% e1,e2,e3 are secret keys, thus at decrypting end e1,e2,e3 are known.
+% Hence a,b,c are also known.
