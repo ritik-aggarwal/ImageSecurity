@@ -159,3 +159,4 @@ figure, imshow(C), title('Final Encrypted RGB image')
 %subplot(3,1,1), imhist(C(:,:,1)), title('Histogram of Red component(Encrypted image)')
 %subplot(3,1,2), imhist(C(:,:,2)), title('Histogram of Green component(Encrypted image)')
 %subplot(3,1,3), imhist(C(:,:,3)), title('Histogram of Blue component(Encrypted image)')
+hello ritik
